@@ -54,7 +54,9 @@ Consul, etcd and SkyDNS2相关服务注册组件。
 是启动时给的映射port,而是其容器服务暴露的端口．</p></li>
 <li><p>(4).如果我们想利用conusl+registrator+docker+consul_template来动态管理nginx则可以这样设计：
 consul_templaye + regsitrator应该和要上线的服务打包到需要部署的机器上，而且此时使用--net=host
-网络模式启动docker上的registrator，此时只需要启动服务的时候进行端口的映射就好了。        </p></li>
+网络模式启动docker上的registrator，此时只需要启动服务的时候进行端口的映射就好了。         　　　　　　　　　　　　　 
+方案二：当然也可以这样玩，给定registrator使用-internal=1,然后注意通过docker启动的服务一定要暴露相关
+服务的端口．     </p></li>
 <li><p>(5).当docker使用默认网络模式，则port是指定的映射端口。 映射端口和docker的网络模式是没有关系
 的（registrator的网络模式）。但是当registrator使用了internal=1
 的时候则此时所注册的服务的端口默认是80.当启动服务时-p 88:8000  则会在consul注册两个服务，
